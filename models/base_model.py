@@ -10,12 +10,20 @@ from datetime import datetime
 class BaseModel():
     """ BaseModel class """
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initializes the BaseModel class
         """
-        self.id = str(uuid4())
-        self.created_at = datetime.utcnow()
-        self.updated_at = datetime.utcnow()
+        if kwargs:
+            for key, value in kwargs.items():
+                if '__class__' != key:
+                    if key is 'created_at' or key is 'updated_at':
+                        value = datetime.strptime(value,
+                                                  '%Y-%m-%dT%H:%M:%S.%f')
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.utcnow()
+            self.updated_at = datetime.utcnow()
 
     def to_dict(self):
         """ returns a dictionary containing all keys/values of __dict__ of the
