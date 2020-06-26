@@ -9,6 +9,7 @@ from datetime import datetime
 
 class BaseModel():
     """ BaseModel class """
+
     def __init__(self):
         """Initializes the BaseModel class
         """
