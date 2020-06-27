@@ -5,6 +5,7 @@ for other classes """
 
 from uuid import uuid4
 from datetime import datetime
+import models
 
 
 class BaseModel():
@@ -16,7 +17,8 @@ class BaseModel():
         if kwargs:
             for key, value in kwargs.items():
                 if '__class__' != key:
-                    if key is 'created_at' or key is 'updated_at':
+                    # creating instances from dictionary
+                    if key == 'created_at' or key == 'updated_at':
                         value = datetime.strptime(value,
                                                   '%Y-%m-%dT%H:%M:%S.%f')
                     setattr(self, key, value)
@@ -24,13 +26,13 @@ class BaseModel():
             self.id = str(uuid4())
             self.created_at = datetime.utcnow()
             self.updated_at = datetime.utcnow()
+            models.storage.new(self)
 
     def to_dict(self):
         """ returns a dictionary containing all keys/values of __dict__ of the
         instance
         """
         dic = self.__dict__.copy()
-        # print(self.__dict__)
         # adding instance class name to the dictionary
         dic['__class__'] = self.__class__.__name__
         # converting datetime object to str
@@ -44,6 +46,7 @@ class BaseModel():
         with the current datetime
         """
         self.updated_at = datetime.utcnow()
+        models.storage.save()
 
     def __str__(self):
         """ prints: [<class name>] (<self.id>) <self.__dict__> """
