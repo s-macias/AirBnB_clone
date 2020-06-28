@@ -6,13 +6,14 @@ for other classes """
 
 import os
 import json
-
+import models
 
 class FileStorage():
     __file_path = "file.json"  # pathfilename
     __objects = {}  # dictionary to save all instances
 
     # returns the __objects dictionary
+
     def all(self):
         # print("from all")
         return FileStorage.__objects
@@ -36,10 +37,11 @@ class FileStorage():
             json.dump(my_dict, f)
 
     def reload(self):
-        from models.base_model import BaseModel
+        #from models.base_model import BaseModel
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r") as f:
                 objs_dict = json.load(f)
             for key, objd in objs_dict.items():
                 #print("objd ", objd)
-                FileStorage.__objects[key] = BaseModel(**objd)
+                #FileStorage.__objects[key] = BaseModel(**objd)
+                FileStorage.__objects[key] = models.BaseModel(**objd)
