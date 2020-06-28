@@ -85,6 +85,13 @@ class TestBaseModel(unittest.TestCase):
         """ tests that a new instance is created from an empty dictionary """
         my_instance = BaseModel({})
         self.assertIsInstance(my_instance, BaseModel)
+        
+    def test_docstring_BaseModel(self): 
+        """ tests that docstrings are present """
+        self.assertIsNotNone(BaseModel.__init__.__doc__)
+        self.assertIsNotNone(BaseModel.to_dict.__doc__)
+        self.assertIsNotNone(BaseModel.save.__doc__)
+        self.assertIsNotNone(BaseModel.__str__.__doc__)
 
     def test_basemodel_pep8(self):
         """ tests pep8 compliance """

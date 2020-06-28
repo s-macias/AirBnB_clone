@@ -17,7 +17,6 @@ class BaseModel():
         if kwargs:
             for key, value in kwargs.items():
                 if '__class__' != key:
-                    # creating instances from dictionary
                     if key == 'created_at' or key == 'updated_at':
                         value = datetime.strptime(value,
                                                   '%Y-%m-%dT%H:%M:%S.%f')

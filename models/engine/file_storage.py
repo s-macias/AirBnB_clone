@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """ Write a class BaseModel that defines all common attributes/methods
 for other classes """
 
@@ -8,18 +7,22 @@ import os
 import json
 import models
 
+
 class FileStorage():
+    """ creates FileStorage class  """
     __file_path = "file.json"  # pathfilename
     __objects = {}  # dictionary to save all instances
 
     # returns the __objects dictionary
 
     def all(self):
+        """ public method that returns __objects dictionary  """
         # print("from all")
         return FileStorage.__objects
 
     # add objs to the dictionary
     def new(self, obj):
+        """ adds obj to __objects dictionary  """
         # print("Adding new obj to __objects")
         clsname = obj.__class__.__name__
         key = clsname + "." + obj.id
@@ -27,6 +30,7 @@ class FileStorage():
         # print(FileStorage.__objects)
 
     def save(self):
+        """ serializes __objects as a JSON fiile """
         # print("saving into file.json")
         with open(FileStorage.__file_path, "w") as f:
             my_dict = {}
@@ -37,11 +41,12 @@ class FileStorage():
             json.dump(my_dict, f)
 
     def reload(self):
-        #from models.base_model import BaseModel
+        """ deserializes JSON file to __objects dictionary  """
+        # from models.base_model import BaseModel
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r") as f:
                 objs_dict = json.load(f)
             for key, objd in objs_dict.items():
-                #print("objd ", objd)
-                #FileStorage.__objects[key] = BaseModel(**objd)
+                # print("objd ", objd)
+                # FileStorage.__objects[key] = BaseModel(**objd)
                 FileStorage.__objects[key] = models.BaseModel(**objd)
