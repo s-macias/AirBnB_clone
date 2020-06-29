@@ -2,8 +2,12 @@
 """ Write a class User that inherits from BaseModel """
 
 
-# from models.base_model import BaseModel
 import models
 
-# b1 = BaseModel()
-# print (b1)
+
+class User(models.BaseModel):
+    """ class that inherits from BaseModel """
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""

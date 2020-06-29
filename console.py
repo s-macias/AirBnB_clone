@@ -11,7 +11,8 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """ creates HBNBCommand class that handles commands """
     prompt = '(hbnb) '
-    classes_dic = {"BaseModel": models.BaseModel}
+    classes_dic = {"BaseModel": models.BaseModel, "User": models.User}
+    
 
     def do_quit(self, line):
         """ class method to quit program """
@@ -37,6 +38,7 @@ class HBNBCommand(cmd.Cmd):
             if arg[0] in HBNBCommand.classes_dic:
                 # creating new instance
                 b1 = HBNBCommand.classes_dic[arg[0]]()
+                print(b1)
                 b1.save()
                 print(b1.id)
             else:
@@ -54,6 +56,7 @@ class HBNBCommand(cmd.Cmd):
                 if lg != 1:
                     idfind = arg[1]
                     objs = models.storage.all()
+                    # print ("print)
                     for key in objs.keys():
                         obj_id = objs[key].id
                         if idfind == obj_id:
