@@ -5,6 +5,7 @@ of the command interpreter """
 
 import cmd
 import models
+import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -46,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         arg = line.split()
-        print(arg)
+        # print(arg)
         if arg:
             if arg[0] in HBNBCommand.classes_dic:
                 lg = len(arg)
@@ -70,7 +71,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         arg = line.split()
-        print(arg)
+        # print(arg)
         if arg:
             if arg[0] in HBNBCommand.classes_dic:
                 lg = len(arg)
@@ -96,8 +97,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         arg = line.split()
-
-        print(arg)
+        # print("self", self)
+        # print("line", arg)
         lg = len(arg)
         list_strings = []
         objs = models.storage.all()
@@ -117,8 +118,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_update(self, line):
-        arg = line.split()
-        print(arg)
+        arg = shlex.split(line)
+        # print(arg)
         if arg:
             if arg[0] in HBNBCommand.classes_dic:
                 lg = len(arg)
@@ -133,29 +134,18 @@ class HBNBCommand(cmd.Cmd):
                                 if lg > 3:
                                     obn = objs[key]
                                     attr_name = arg[2]
-                                    if lg > 4:
-                                        attr_val = ""
-                                        quit_loop = 0
-                                        for i in range(3, len(arg)):
-                                            if i == 3:
-                                                attr_val += arg[i]
-                                            else:
-                                                attr_val += " " + arg[i]
-                                            # leave the loop when " is in a word
-                                            if i > 3 and ('\"' in arg[i]):
-                                                break
-                                        print(attr_val)
-                                    else:
-                                        attr_val = arg[3]
-                                    attr_val = attr_val.strip('\"')
-                                    setattr(obn, attr_name, attr_val)
+                                    attr_val = arg[3]
+                                    print(type(attr_val))
+                                    setattr(
+                                        obn, attr_name, attr_val)
                                     obn.save()
                                     break
                                 else:
                                     print("** value missing **")
                                     break
                             else:
-                                print("** attribute name missing **")
+                                print(
+                                    "** attribute name missing **")
                                 break
                     else:
                         print("** no instance found **")
