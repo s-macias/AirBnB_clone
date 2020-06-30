@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """ tests FileStorage class  """
-
-
 import unittest
 import pep8
 import models

@@ -166,7 +166,7 @@ class HBNBCommand(cmd.Cmd):
                             type_attr = obj_update.__class__.__dict__[
                                 attr_name]
                             attr_val = type(type_attr)(attr_val)
-                            print("casting", type(attr_val))
+                            # print("casting", type(attr_val))
                         setattr(obj_update, attr_name, attr_val)
                         obj_update.save()
                     else:

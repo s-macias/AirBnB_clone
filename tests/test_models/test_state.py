@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """This module tests User class for our project """
-
-
 import unittest
 import pep8
 from datetime import datetime
