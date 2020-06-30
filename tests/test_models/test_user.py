@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """This module tests User class for our project """
-
-
 import unittest
 import pep8
 from datetime import datetime
@@ -30,7 +28,7 @@ class TestUser(unittest.TestCase):
         self.assertNotEqual(self.u1, self.u2)
         self.assertIsInstance(self.u1.id, str)
         self.assertNotEqual(self.u1, self.b1)
-        
+
     def test_user_pep8(self):
         """ tests pep8 compliance """
         pep8style = pep8.StyleGuide(quiet=True)
@@ -40,10 +38,10 @@ class TestUser(unittest.TestCase):
     def test_type_user_attributes(self):
         """ tests user attributes are strings  """
         self.u1.first_name = "John"
-        self.assertIsInstance(self.u1.first_name, str) 
+        self.assertIsInstance(self.u1.first_name, str)
         self.u1.last_name = "Smith"
         self.assertIsInstance(self.u1.last_name, str)
         self.u1.email = "jsmith@gmail.com"
         self.assertIsInstance(self.u1.email, str)
         self.u1.password = "$%&778Yhh"
-        self.assertIsInstance(self.u1.password, str) 
+        self.assertIsInstance(self.u1.password, str)

@@ -3,6 +3,7 @@
 import models
 
 
-class State(models.BaseModel):
+class City(models.BaseModel):
     """State class that inherits from BaseModel """
+    state_id = ""
     name = ""
