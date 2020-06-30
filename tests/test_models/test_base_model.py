@@ -85,8 +85,8 @@ class TestBaseModel(unittest.TestCase):
         """ tests that a new instance is created from an empty dictionary """
         my_instance = BaseModel({})
         self.assertIsInstance(my_instance, BaseModel)
-        
-    def test_docstring_BaseModel(self): 
+
+    def test_docstring_BaseModel(self):
         """ tests that docstrings are present """
         self.assertIsNotNone(BaseModel.__init__.__doc__)
         self.assertIsNotNone(BaseModel.to_dict.__doc__)

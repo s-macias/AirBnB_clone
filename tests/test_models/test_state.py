@@ -9,7 +9,6 @@ from models.state import State
 from models.base_model import BaseModel
 
 
-
 class TestUser(unittest.TestCase):
     """Testing User class
     """
@@ -31,7 +30,7 @@ class TestUser(unittest.TestCase):
         self.assertNotEqual(self.s1, self.s2)
         self.assertIsInstance(self.s1.id, str)
         self.assertNotEqual(self.s1, self.b1)
-        
+
     def test_user_pep8(self):
         """ tests pep8 compliance """
         pep8style = pep8.StyleGuide(quiet=True)
@@ -41,5 +40,4 @@ class TestUser(unittest.TestCase):
     def test_type_state_attributes(self):
         """ tests State attributes are strings  """
         self.s1.name = "Florida"
-        self.assertIsInstance(self.s1.name, str) 
-    
+        self.assertIsInstance(self.s1.name, str)

@@ -13,6 +13,7 @@ from models.state import State
 
 class TestFileStorage(unittest.TestCase):
     """ tests FileStorage  """
+
     def setUp(self):
         self.base1 = BaseModel()
         self.storage_test = FileStorage()
@@ -70,7 +71,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsInstance(models.storage.all(), dict)
         self.assertTrue(hasattr(self.base1, 'save'))
         self.assertNotEqual(self.base1.created_at, self.base1.updated_at)
-        
+
     def test_User_saveStorage(self):
         """ Checks if the save function works """
         self.u1.first_name = "Sue"
@@ -80,7 +81,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsInstance(models.storage.all(), dict)
         self.assertTrue(hasattr(self.u1, 'save'))
         self.assertNotEqual(self.u1.created_at, self.u1.updated_at)
-        
+
     def test_State_saveStorage(self):
         """ Checks if the save function works """
         self.s1.name = "Antioquia"
@@ -90,7 +91,6 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsInstance(models.storage.all(), dict)
         self.assertTrue(hasattr(self.s1, 'save'))
         self.assertNotEqual(self.s1.created_at, self.s1.updated_at)
-
 
     def test_filestorage_pep8(self):
         """ tests pep8 compliance """

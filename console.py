@@ -32,7 +32,11 @@ class HBNBCommand(cmd.Cmd):
         print('class method to quit program\n')
 
     def do_create(self, line):
-        # miniparse
+        """Create a new instance
+
+        Args:
+            line (str): command line
+        """
         arg = line.split()
         if arg:
             if arg[0] in HBNBCommand.classes_dic:
@@ -48,6 +52,11 @@ class HBNBCommand(cmd.Cmd):
         # ret = cmd.Cmd.parseline(self, line)
 
     def do_show(self, line):
+        """Shows  a specific instance saved in the file.json
+
+        Args:
+            line (str): command line
+        """
         arg = line.split()
         # print(arg)
         if arg:
@@ -70,8 +79,12 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_destroy(self, line):
+        """Destroy an instance specified with class and id
+
+        Args:
+            line (str): command line
+        """
         arg = line.split()
-        # print(arg)
         if arg:
             if arg[0] in HBNBCommand.classes_dic:
                 lg = len(arg)
@@ -93,9 +106,12 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_all(self, line):
+        """ Shows all instances in the file by default.
+        If the class is specified, finds all instances that belong to it
+        Args:
+            line (str): command line
+        """
         arg = line.split()
-        # print("self", self)
-        # print("line", arg)
         lg = len(arg)
         list_strings = []
         objs = models.storage.all()
@@ -119,8 +135,12 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_update(self, line):
+        """ Update an attribute of a specific instance
+
+        Args:
+            line (str): command line
+        """
         arg = shlex.split(line)
-        # print(arg)
         if arg:
             if arg[0] in HBNBCommand.classes_dic:
                 lg = len(arg)
@@ -141,13 +161,12 @@ class HBNBCommand(cmd.Cmd):
                         # attribute value
                         attr_val = arg[3]
                         obj_update = objs[key_find]
-                        # validating exist
+                        # validating if exist in class __dict__
                         if attr_name in obj_update.__class__.__dict__:
-                            print("casting!!!")
+                            # print("casting!!!")
                             type_attr = obj_update.__class__.__dict__[
                                 attr_name]
                             attr_val = type(type_attr)(attr_val)
-                            print(type(attr_val))
                         setattr(obj_update, attr_name, attr_val)
                         obj_update.save()
                     else:
