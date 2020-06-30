@@ -43,10 +43,13 @@ class FileStorage():
     def reload(self):
         """ deserializes JSON file to __objects dictionary  """
         # from models.base_model import BaseModel
+        # from models import User, BaseModel
+        diccionario = {"BaseModel": models.BaseModel, "User": models.User}
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r") as f:
                 objs_dict = json.load(f)
             for key, objd in objs_dict.items():
                 # print("objd ", objd)
                 # FileStorage.__objects[key] = BaseModel(**objd)
-                FileStorage.__objects[key] = models.BaseModel(**objd)
+                classname = objd["__class__"]
+                FileStorage.__objects[key] = diccionario[classname](**objd)

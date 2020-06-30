@@ -50,4 +50,5 @@ class BaseModel():
     def __str__(self):
         """ prints: [<class name>] (<self.id>) <self.__dict__> """
         clsname = self.__class__.__name__
+        #print("classname ", clsname)
         return "[{}] ({}) {}".format(clsname, self.id, self.__dict__)
