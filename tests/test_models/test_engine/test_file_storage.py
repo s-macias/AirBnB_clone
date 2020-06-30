@@ -13,6 +13,8 @@ class TestFileStorage(unittest.TestCase):
     """ tests FileStorage  """
 
     def setUp(self):
+        """setting up initial conditions
+        """
         self.base1 = BaseModel()
         self.storage_test = FileStorage()
         self.u1 = User()

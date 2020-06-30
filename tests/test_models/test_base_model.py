@@ -39,7 +39,6 @@ class TestBaseModel(unittest.TestCase):
     # Métodos
     def test_todict(self):
         """ tests that values in dictionary are strings  """
-        # print(self.basedict.to_dict())
         self.assertTrue(type(self.basedict.to_dict()) is dict)
         dictionary = self.basedict.to_dict()
         self.assertIsInstance(dictionary['created_at'], str)
