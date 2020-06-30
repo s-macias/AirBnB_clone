@@ -54,4 +54,4 @@ class FileStorage():
                 # FileStorage.__objects[key] = BaseModel(**objd)
                 classname = objd["__class__"]
                 FileStorage.__objects[key] = diccionario[classname](**objd)
-            print("reloading dictionary", FileStorage.__objects)
+            # print("reloading dictionary", FileStorage.__objects)
