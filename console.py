@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """ program called console.py that contains the entry point
 of the command interpreter """
-
-
 import cmd
 import models
 import shlex
@@ -12,7 +10,9 @@ class HBNBCommand(cmd.Cmd):
     """ creates HBNBCommand class that handles commands """
     prompt = '(hbnb) '
     classes_dic = {"BaseModel": models.BaseModel, "User": models.User,
-                   "State": models.State}
+                   "State": models.State, "City": models.City,
+                   "Amenity": models.Amenity, "Place": models.Place,
+                   "Review": models.Review}
 
     def do_quit(self, line):
         """ class method to quit program """
@@ -163,37 +163,14 @@ class HBNBCommand(cmd.Cmd):
                         obj_update = objs[key_find]
                         # validating if exist in class __dict__
                         if attr_name in obj_update.__class__.__dict__:
-                            # print("casting!!!")
                             type_attr = obj_update.__class__.__dict__[
                                 attr_name]
                             attr_val = type(type_attr)(attr_val)
+                            print("casting", type(attr_val))
                         setattr(obj_update, attr_name, attr_val)
                         obj_update.save()
                     else:
                         print("** no instance found **")
-                    # for key in objs.keys():
-                    #     obj_id = objs[key].id
-                    #     # finding the id
-                    #     if idfind == obj_id:
-                    #         if lg > 2:
-                    #             if lg > 3:
-                    #                 obn = objs[key]
-                    #                 attr_name = arg[2]
-                    #                 attr_val = arg[3]
-                    #                 print(type(attr_val))
-                    #                 setattr(
-                    #                     obn, attr_name, attr_val)
-                    #                 obn.save()
-                    #                 break
-                    #             else:
-                    #                 print("** value missing **")
-                    #                 break
-                    #         else:
-                    #             print(
-                    #                 "** attribute name missing **")
-                    #             break
-                    # else:
-                    #     print("** no instance found **")
                 else:
                     print("** instance id missing **")
             else:

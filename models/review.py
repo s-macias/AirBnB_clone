@@ -3,6 +3,8 @@
 import models
 
 
-class State(models.BaseModel):
+class Review(models.BaseModel):
     """State class that inherits from BaseModel """
-    name = ""
+    place_id = ""
+    user_id = ""
+    text = ""

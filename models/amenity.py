@@ -3,6 +3,6 @@
 import models
 
 
-class State(models.BaseModel):
+class Amenity(models.BaseModel):
     """State class that inherits from BaseModel """
     name = ""

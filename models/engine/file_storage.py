@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """ Write a class BaseModel that defines all common attributes/methods
 for other classes """
-
-
 import os
 import json
 import models
@@ -45,7 +43,9 @@ class FileStorage():
         # from models.base_model import BaseModel
         # from models import User, BaseModel
         diccionario = {"BaseModel": models.BaseModel, "User": models.User,
-                       "State": models.State}
+                       "State": models.State, "City": models.City,
+                       "Amenity": models.Amenity, "Place": models.Place,
+                       "Review": models.Review}
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r") as f:
                 objs_dict = json.load(f)
@@ -54,4 +54,4 @@ class FileStorage():
                 # FileStorage.__objects[key] = BaseModel(**objd)
                 classname = objd["__class__"]
                 FileStorage.__objects[key] = diccionario[classname](**objd)
-            # print("reloading dictionary", FileStorage.__objects)
+            print("reloading dictionary", FileStorage.__objects)
