@@ -11,7 +11,8 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """ creates HBNBCommand class that handles commands """
     prompt = '(hbnb) '
-    classes_dic = {"BaseModel": models.BaseModel, "User": models.User}
+    classes_dic = {"BaseModel": models.BaseModel, "User": models.User,
+                   "State": models.State}
 
     def do_quit(self, line):
         """ class method to quit program """
