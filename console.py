@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_update(self, line):
-        """ Update an attribute of a specific instance
+        """ Updates an attribute of a specific instance
 
         Args:
             line (str): command line
@@ -178,7 +178,20 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
+    def do_count(self, line):
+        """ Counts instances of a given class """
+        instance_n = 0
+        arg = line.split()
+        class_find = arg[0]
+        objs = models.storage.all()
+        for key in objs.keys():
+            class_filter = key.split(".")
+            if class_find == class_filter[0]:
+                instance_n += 1
+        print (instance_n)
+
     def onecmd(self, line):
+        """ Retrieves all instances of a given class """
         if "." in line:
             arg = line.split(".")
             # print("arg", arg)
