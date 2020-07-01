@@ -188,14 +188,24 @@ class HBNBCommand(cmd.Cmd):
             class_filter = key.split(".")
             if class_find == class_filter[0]:
                 instance_n += 1
-        print (instance_n)
+        print(instance_n)
 
     def onecmd(self, line):
         """ Retrieves all instances of a given class """
         if "." in line:
             arg = line.split(".")
-            # print("arg", arg)
-            tosend = arg[1].strip("()") + " " + arg[0]
+            cmd_list = ["show", "destroy", "update"]
+            if cmd_list[0] in arg[1]:
+                cmd_unquote = arg[1]
+                class_name = arg[0]
+                if class_name == "":
+                    print("** class name missing **")
+                    return
+                cmd_id = cmd_unquote.split('(')[1].split(')')[0]
+                cmd_id = cmd_id.strip('"')
+                tosend = cmd_list[0] + " " + class_name + " " + cmd_id
+            else:
+                tosend = arg[1].strip("()") + " " + arg[0]
             return cmd.Cmd.onecmd(self, tosend)
         else:
             return cmd.Cmd.onecmd(self, line)
