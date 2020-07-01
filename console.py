@@ -178,6 +178,15 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
+    def onecmd(self, line):
+        if "." in line:
+            arg = line.split(".")
+            # print("arg", arg)
+            tosend = arg[1].strip("()") + " " + arg[0]
+            return cmd.Cmd.onecmd(self, tosend)
+        else:
+            return cmd.Cmd.onecmd(self, line)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
